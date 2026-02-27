@@ -12,9 +12,9 @@ import { cn } from "@/lib/utils";
 type Role = "student" | "faculty" | "admin";
 
 const roles: { value: Role; label: string; href: string }[] = [
-    { value: "student", label: "Student", href: "/student-dashboard" },
-    { value: "faculty", label: "Faculty", href: "/faculty-dashboard" },
-    { value: "admin", label: "Administrator", href: "/admin-dashboard" },
+    { value: "student", label: "Student", href: "/student/dashboard" },
+    { value: "faculty", label: "Faculty", href: "/faculty/dashboard" },
+    { value: "admin", label: "Administrator", href: "/admin/dashboard" },
 ];
 
 export default function LoginPage() {
@@ -38,7 +38,7 @@ export default function LoginPage() {
         if (!validate()) return;
         setLoading(true);
         await new Promise((r) => setTimeout(r, 1000));
-        const target = roles.find((r) => r.value === role)?.href ?? "/student-dashboard";
+        const target = roles.find((r) => r.value === role)?.href ?? "/student/dashboard";
         window.location.href = target;
     };
 

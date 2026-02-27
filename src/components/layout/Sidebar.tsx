@@ -17,26 +17,26 @@ import { cn } from "@/lib/utils";
 import { UserRole, NavItem } from "@/types";
 
 const studentNav: NavItem[] = [
-    { label: "Dashboard", href: "/student-dashboard", icon: "LayoutDashboard" },
-    { label: "Achievements", href: "/achievements", icon: "Trophy" },
-    { label: "Analytics", href: "/analytics", icon: "BarChart2" },
-    { label: "Reports", href: "/reports", icon: "FileText" },
+    { label: "Dashboard", href: "/student/dashboard", icon: "LayoutDashboard" },
+    { label: "Achievements", href: "/student/achievements", icon: "Trophy" },
+    { label: "Analytics", href: "/student/analytics", icon: "BarChart2" },
+    { label: "Reports", href: "/admin/reports", icon: "FileText" },
 ];
 
 const facultyNav: NavItem[] = [
-    { label: "Dashboard", href: "/faculty-dashboard", icon: "LayoutDashboard" },
-    { label: "Pending Approvals", href: "/achievements", icon: "CheckSquare", badge: 2 },
-    { label: "Students", href: "/reports", icon: "Users" },
-    { label: "Analytics", href: "/analytics", icon: "BarChart2" },
-    { label: "Reports", href: "/reports", icon: "FileText" },
+    { label: "Dashboard", href: "/faculty/dashboard", icon: "LayoutDashboard" },
+    { label: "Pending Approvals", href: "/student/achievements", icon: "CheckSquare", badge: 2 },
+    { label: "Students", href: "/admin/reports", icon: "Users" },
+    { label: "Analytics", href: "/student/analytics", icon: "BarChart2" },
+    { label: "Reports", href: "/admin/reports", icon: "FileText" },
 ];
 
 const adminNav: NavItem[] = [
-    { label: "Dashboard", href: "/admin-dashboard", icon: "LayoutDashboard" },
-    { label: "All Achievements", href: "/achievements", icon: "Trophy" },
-    { label: "Analytics", href: "/analytics", icon: "PieChart" },
-    { label: "Reports", href: "/reports", icon: "FileText" },
-    { label: "Users", href: "/reports", icon: "Users" },
+    { label: "Dashboard", href: "/admin/dashboard", icon: "LayoutDashboard" },
+    { label: "All Achievements", href: "/student/achievements", icon: "Trophy" },
+    { label: "Analytics", href: "/student/analytics", icon: "PieChart" },
+    { label: "Reports", href: "/admin/reports", icon: "FileText" },
+    { label: "Users", href: "/admin/reports", icon: "Users" },
 ];
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
