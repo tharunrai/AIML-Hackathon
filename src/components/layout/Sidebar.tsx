@@ -12,6 +12,7 @@ import {
     PieChart,
     Home,
     ChevronRight,
+    FileBarChart,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { UserRole, NavItem } from "@/types";
@@ -27,6 +28,7 @@ const adminNav: NavItem[] = [
     { label: "All Achievements", href: "/admin/achievements", icon: "Trophy" },
     { label: "Analytics", href: "/admin/analytics", icon: "PieChart" },
     { label: "Reports", href: "/admin/reports", icon: "FileText" },
+    { label: "NBA Report", href: "/admin/nba-report", icon: "FileBarChart" },
     { label: "Users", href: "/admin/users", icon: "Users" },
 ];
 
@@ -39,6 +41,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
     CheckSquare,
     PieChart,
     Home,
+    FileBarChart,
 };
 
 function navForRole(role: UserRole): NavItem[] {
