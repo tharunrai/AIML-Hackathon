@@ -45,7 +45,7 @@ const achievementColumns: Column<Achievement>[] = [
     { key: "date", label: "Date", sortable: true },
     {
         key: "points", label: "Points", sortable: true, render: (val) => (
-            <span className="text-xs font-semibold text-blue-700">{String(val)} pts</span>
+            <span className="text-xs font-semibold text-[#20376b]">{String(val)} pts</span>
         )
     },
     { key: "status", label: "Status", render: (_, row) => <StatusBadge status={row.status} /> },
@@ -209,7 +209,7 @@ export default function ReportsPage() {
                         <Button
                             onClick={handleGenerate}
                             disabled={generating}
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white h-9 text-sm"
+                            className="w-full bg-[#20376b] hover:bg-[#1a2d54] text-white h-9 text-sm"
                         >
                             {generating ? (
                                 <span className="flex items-center gap-2">

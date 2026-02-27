@@ -29,7 +29,7 @@ const columns: Column<Achievement>[] = [
     { key: "category", label: "Category", render: (val) => <CategoryBadge category={String(val)} /> },
     {
         key: "points", label: "Points", sortable: true, render: (val) => (
-            <span className="font-semibold text-blue-700 text-xs">{String(val)} pts</span>
+            <span className="font-semibold text-[#20376b] text-xs">{String(val)} pts</span>
         )
     },
     { key: "status", label: "Status", render: (_, row) => <StatusBadge status={row.status} /> },
@@ -61,10 +61,10 @@ export default function StudentDashboard() {
 
             {/* Stat Cards */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-                <StatCard title="Total Points" value={totalPoints} icon={Star} color="blue" trend={12} trendLabel="vs last month" />
-                <StatCard title="Approved" value={approved} icon={CheckCircle} color="green" trend={5} trendLabel="vs last month" />
-                <StatCard title="Pending Review" value={pending} icon={Clock} color="orange" />
-                <StatCard title="Rejected" value={rejected} icon={XCircle} color="red" />
+                <StatCard title="Total Points" value={totalPoints} icon={Star} color="navy" trend={12} trendLabel="vs last month" />
+                <StatCard title="Approved" value={approved} icon={CheckCircle} color="emerald" trend={5} trendLabel="vs last month" />
+                <StatCard title="Pending Review" value={pending} icon={Clock} color="amber" />
+                <StatCard title="Rejected" value={rejected} icon={XCircle} color="rose" />
             </div>
 
             {/* Charts Row */}
@@ -73,7 +73,7 @@ export default function StudentDashboard() {
                     <CustomAreaChart
                         data={areaData}
                         areas={[
-                            { key: "total", label: "Submitted", color: "#2563eb" },
+                            { key: "total", label: "Submitted", color: "#20376b" },
                             { key: "approved", label: "Approved", color: "#10b981" },
                         ]}
                     />
@@ -90,7 +90,7 @@ export default function StudentDashboard() {
                         <CardTitle className="text-base font-semibold text-slate-800">My Achievements</CardTitle>
                         <p className="text-xs text-slate-500 mt-0.5">All submitted achievements and their status</p>
                     </div>
-                    <Badge className="bg-blue-50 text-blue-700 border-blue-100 text-[10px]">
+                    <Badge className="bg-[#20376b]/10 text-[#20376b] border-[#20376b]/20 text-[10px]">
                         {myAchievements.length} Total
                     </Badge>
                 </CardHeader>

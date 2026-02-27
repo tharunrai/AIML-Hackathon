@@ -10,35 +10,35 @@ interface StatCardProps {
     icon: LucideIcon;
     trend?: number;
     trendLabel?: string;
-    color?: "blue" | "green" | "orange" | "violet" | "red";
+    color?: "navy" | "teal" | "amber" | "emerald" | "rose";
     suffix?: string;
 }
 
 const colorMap = {
-    blue: {
-        bg: "bg-blue-50",
-        icon: "bg-blue-600",
-        text: "text-blue-700",
+    navy: {
+        bg: "bg-[#20376b]/8",
+        icon: "text-[#20376b]",
+        text: "text-[#20376b]",
     },
-    green: {
+    teal: {
+        bg: "bg-teal-50",
+        icon: "text-teal-600",
+        text: "text-teal-700",
+    },
+    amber: {
+        bg: "bg-amber-50",
+        icon: "text-amber-600",
+        text: "text-amber-700",
+    },
+    emerald: {
         bg: "bg-emerald-50",
-        icon: "bg-emerald-600",
+        icon: "text-emerald-600",
         text: "text-emerald-700",
     },
-    orange: {
-        bg: "bg-orange-50",
-        icon: "bg-orange-500",
-        text: "text-orange-700",
-    },
-    violet: {
-        bg: "bg-violet-50",
-        icon: "bg-violet-600",
-        text: "text-violet-700",
-    },
-    red: {
-        bg: "bg-red-50",
-        icon: "bg-red-500",
-        text: "text-red-700",
+    rose: {
+        bg: "bg-rose-50",
+        icon: "text-rose-600",
+        text: "text-rose-700",
     },
 };
 
@@ -49,7 +49,7 @@ export function StatCard({
     icon: Icon,
     trend,
     trendLabel,
-    color = "blue",
+    color = "navy",
     suffix,
 }: StatCardProps) {
     const colors = colorMap[color];
@@ -69,40 +69,40 @@ export function StatCard({
                 : "text-red-500";
 
     return (
-        <Card className="border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
+        <Card className="border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200 bg-white">
+            <CardContent className="p-5">
                 <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                        <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                    <div className="space-y-1 flex-1 min-w-0">
+                        <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
                             {title}
                         </p>
                         <div className="flex items-baseline gap-1">
-                            <p className="text-3xl font-bold text-slate-900">{value}</p>
+                            <p className="text-2xl font-bold text-slate-900 tracking-tight">{value}</p>
                             {suffix && (
-                                <span className="text-sm font-medium text-slate-500">{suffix}</span>
+                                <span className="text-sm font-medium text-slate-400">{suffix}</span>
                             )}
                         </div>
                         {(trend !== undefined || description) && (
                             <div className="flex items-center gap-1">
                                 {trend !== undefined && (
                                     <>
-                                        <TrendIcon className={cn("h-3.5 w-3.5", trendColor)} />
+                                        <TrendIcon className={cn("h-3 w-3", trendColor)} />
                                         <span className={cn("text-xs font-medium", trendColor)}>
                                             {Math.abs(trend)}%
                                         </span>
                                     </>
                                 )}
                                 {trendLabel && (
-                                    <span className="text-xs text-slate-400">{trendLabel}</span>
+                                    <span className="text-[11px] text-slate-400">{trendLabel}</span>
                                 )}
                                 {description && !trendLabel && (
-                                    <span className="text-xs text-slate-500">{description}</span>
+                                    <span className="text-[11px] text-slate-500">{description}</span>
                                 )}
                             </div>
                         )}
                     </div>
-                    <div className={cn("rounded-xl p-3", colors.bg)}>
-                        <Icon className={cn("h-5 w-5", colors.text)} />
+                    <div className={cn("rounded-lg p-2.5 ml-3 shrink-0", colors.bg)}>
+                        <Icon className={cn("h-5 w-5", colors.icon)} />
                     </div>
                 </div>
             </CardContent>

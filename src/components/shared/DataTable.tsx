@@ -109,8 +109,8 @@ export function DataTable<T>({
                                         {col.label}
                                         {col.sortable && (
                                             <span className="flex flex-col">
-                                                <ChevronUp className={cn("h-2.5 w-2.5", sortKey === col.key && sortDir === "asc" ? "text-blue-600" : "text-slate-300")} />
-                                                <ChevronDown className={cn("h-2.5 w-2.5 -mt-0.5", sortKey === col.key && sortDir === "desc" ? "text-blue-600" : "text-slate-300")} />
+                                                <ChevronUp className={cn("h-2.5 w-2.5", sortKey === col.key && sortDir === "asc" ? "text-[#20376b]" : "text-slate-300")} />
+                                                <ChevronDown className={cn("h-2.5 w-2.5 -mt-0.5", sortKey === col.key && sortDir === "desc" ? "text-[#20376b]" : "text-slate-300")} />
                                             </span>
                                         )}
                                     </div>
@@ -175,9 +175,9 @@ export function DataTable<T>({
 // Status badge helper
 export function StatusBadge({ status }: { status: AchievementStatus }) {
     const map = {
-        approved: "bg-emerald-100 text-emerald-700 border-emerald-200",
-        pending: "bg-orange-100 text-orange-700 border-orange-200",
-        rejected: "bg-red-100 text-red-700 border-red-200",
+        approved: "bg-emerald-50 text-emerald-700 border-emerald-200",
+        pending: "bg-amber-50 text-amber-700 border-amber-200",
+        rejected: "bg-rose-50 text-rose-700 border-rose-200",
     };
     return (
         <span className={cn("inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border", map[status])}>
@@ -189,12 +189,12 @@ export function StatusBadge({ status }: { status: AchievementStatus }) {
 // Category badge helper
 export function CategoryBadge({ category }: { category: string }) {
     const map: Record<string, string> = {
-        Academic: "bg-blue-100 text-blue-700",
-        Research: "bg-purple-100 text-purple-700",
-        Sports: "bg-green-100 text-green-700",
-        Cultural: "bg-pink-100 text-pink-700",
-        "Co-Curricular": "bg-cyan-100 text-cyan-700",
-        Professional: "bg-amber-100 text-amber-700",
+        Academic: "bg-[#20376b]/8 text-[#20376b]",
+        Research: "bg-teal-50 text-teal-700",
+        Sports: "bg-emerald-50 text-emerald-700",
+        Cultural: "bg-rose-50 text-rose-700",
+        "Co-Curricular": "bg-sky-50 text-sky-700",
+        Professional: "bg-amber-50 text-amber-700",
     };
     return (
         <span className={cn("inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold", map[category] ?? "bg-slate-100 text-slate-700")}>

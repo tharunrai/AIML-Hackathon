@@ -48,7 +48,7 @@ const achievementColumns: Column<Achievement>[] = [
     { key: "department", label: "Dept", render: (val) => <span className="text-xs text-slate-500">{String(val).split(" ")[0]}</span> },
     {
         key: "points", label: "Points", sortable: true, render: (val) => (
-            <span className="text-xs font-semibold text-violet-700">{String(val)} pts</span>
+            <span className="text-xs font-semibold text-[#20376b]">{String(val)} pts</span>
         )
     },
     { key: "status", label: "Status", render: (_, row) => <StatusBadge status={row.status} /> },
@@ -61,7 +61,7 @@ const deptColumns: Column<DepartmentStats>[] = [
     { key: "approvedAchievements", label: "Approved", sortable: true, render: (val) => <span className="text-emerald-700 font-semibold text-xs">{String(val)}</span> },
     {
         key: "totalPoints", label: "Points", sortable: true, render: (val) => (
-            <span className="font-semibold text-violet-700 text-xs">{Number(val).toLocaleString()}</span>
+            <span className="font-semibold text-[#20376b] text-xs">{Number(val).toLocaleString()}</span>
         )
     },
 ];
@@ -149,10 +149,10 @@ export default function AdminDashboard() {
 
             {/* Stat Cards */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-                <StatCard title="Total Students" value={totalStudents.toLocaleString()} icon={Users} color="violet" trend={5} trendLabel="vs last year" />
-                <StatCard title="Total Achievements" value={totalAchievements} icon={Trophy} color="violet" trend={18} trendLabel="vs last month" />
-                <StatCard title="Pending Approvals" value={pendingAchievements.length} icon={Clock} color="orange" />
-                <StatCard title="Approval Rate" value={approvalRate} suffix="%" icon={TrendingUp} color="green" trend={2} trendLabel="vs last month" />
+                <StatCard title="Total Students" value={totalStudents.toLocaleString()} icon={Users} color="navy" trend={5} trendLabel="vs last year" />
+                <StatCard title="Total Achievements" value={totalAchievements} icon={Trophy} color="teal" trend={18} trendLabel="vs last month" />
+                <StatCard title="Pending Approvals" value={pendingAchievements.length} icon={Clock} color="amber" />
+                <StatCard title="Approval Rate" value={approvalRate} suffix="%" icon={TrendingUp} color="emerald" trend={2} trendLabel="vs last month" />
             </div>
 
             {/* Tabs */}
@@ -162,7 +162,7 @@ export default function AdminDashboard() {
                     <TabsTrigger value="approvals">
                         Pending Approvals
                         {pendingAchievements.length > 0 && (
-                            <span className="ml-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-orange-100 text-orange-600 text-[9px] font-bold">
+                            <span className="ml-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-100 text-amber-700 text-[9px] font-bold">
                                 {pendingAchievements.length}
                             </span>
                         )}
@@ -177,9 +177,9 @@ export default function AdminDashboard() {
                             <CustomAreaChart
                                 data={areaData}
                                 areas={[
-                                    { key: "total", label: "Total", color: "#8b5cf6" },
+                                    { key: "total", label: "Total", color: "#20376b" },
                                     { key: "approved", label: "Approved", color: "#10b981" },
-                                    { key: "pending", label: "Pending", color: "#f59e0b" },
+                                    { key: "pending", label: "Pending", color: "#d97706" },
                                 ]}
                             />
                         </ChartWrapper>
@@ -194,8 +194,8 @@ export default function AdminDashboard() {
                             <CustomBarChart
                                 data={barDataDept}
                                 bars={[
-                                    { key: "Points", label: "Total Points", color: "#8b5cf6" },
-                                    { key: "Achievements", label: "Achievements Ã—30", color: "#c4b5fd" },
+                                    { key: "Points", label: "Total Points", color: "#20376b" },
+                                    { key: "Achievements", label: "Achievements ×30", color: "#94aed4" },
                                 ]}
                             />
                         </ChartWrapper>
@@ -212,7 +212,7 @@ export default function AdminDashboard() {
                                             {i === 0 ? "ðŸ¥‡" : i === 1 ? "ðŸ¥ˆ" : i === 2 ? "ðŸ¥‰" : `#${i + 1}`}
                                         </div>
                                         <Avatar className="h-7 w-7">
-                                            <AvatarFallback className="bg-violet-100 text-violet-700 text-[9px] font-semibold">
+                                            <AvatarFallback className="bg-[#20376b]/10 text-[#20376b] text-[9px] font-semibold">
                                                 {s.name.split(" ").map((n) => n[0]).join("")}
                                             </AvatarFallback>
                                         </Avatar>
@@ -220,7 +220,7 @@ export default function AdminDashboard() {
                                             <p className="text-xs font-medium text-slate-900 truncate">{s.name}</p>
                                             <p className="text-[10px] text-slate-400">{s.department}</p>
                                         </div>
-                                        <span className="text-xs font-bold text-violet-700 shrink-0">{s.totalPoints} pts</span>
+                                        <span className="text-xs font-bold text-[#20376b] shrink-0">{s.totalPoints} pts</span>
                                     </div>
                                 ))}
                             </CardContent>
@@ -260,10 +260,10 @@ export default function AdminDashboard() {
                 <TabsContent value="approvals">
                     {/* Approval Stats */}
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-                        <StatCard title="Awaiting Review" value={pendingAchievements.length} icon={Clock} color="orange" />
-                        <StatCard title="Reviewed This Month" value={totalReviewed} icon={CheckCircle} color="green" trend={8} trendLabel="vs last month" />
-                        <StatCard title="Students Monitored" value={students.length} icon={Users} color="violet" />
-                        <StatCard title="Approval Rate" value="91" suffix="%" icon={TrendingUp} color="green" trend={3} trendLabel="vs last month" />
+                        <StatCard title="Awaiting Review" value={pendingAchievements.length} icon={Clock} color="amber" />
+                        <StatCard title="Reviewed This Month" value={totalReviewed} icon={CheckCircle} color="emerald" trend={8} trendLabel="vs last month" />
+                        <StatCard title="Students Monitored" value={students.length} icon={Users} color="navy" />
+                        <StatCard title="Approval Rate" value="91" suffix="%" icon={TrendingUp} color="teal" trend={3} trendLabel="vs last month" />
                     </div>
 
                     {/* Charts + Mentee Progress */}

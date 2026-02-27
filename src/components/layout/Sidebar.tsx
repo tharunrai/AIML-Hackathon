@@ -50,25 +50,15 @@ interface SidebarProps {
     role: UserRole;
 }
 
-const roleTheme = {
-    student: {
-        active: "bg-blue-600 text-white shadow-sm",
-    },
-    admin: {
-        active: "bg-violet-600 text-white shadow-sm",
-    },
-};
-
 export function Sidebar({ role }: SidebarProps) {
     const pathname = usePathname();
     const navItems = navForRole(role);
-    const theme = roleTheme[role];
 
     return (
-        <aside className="hidden lg:flex w-60 shrink-0 flex-col border-r border-slate-200 bg-slate-50 min-h-screen">
-            <nav className="flex-1 px-3 py-6 space-y-0.5">
-                <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
-                    Navigation
+        <aside className="hidden lg:flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white min-h-screen">
+            <nav className="flex-1 px-3 py-5 space-y-0.5">
+                <p className="px-3 mb-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    {role === "admin" ? "Administration" : "Student Portal"}
                 </p>
                 {navItems.map((item) => {
                     const Icon = iconMap[item.icon] || LayoutDashboard;
@@ -78,25 +68,23 @@ export function Sidebar({ role }: SidebarProps) {
                             key={item.label}
                             href={item.href}
                             className={cn(
-                                "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all",
+                                "group flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-all relative",
                                 isActive
-                                    ? theme.active
-                                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                                    ? "bg-[#20376b]/8 text-[#20376b] font-semibold before:absolute before:left-0 before:top-1 before:bottom-1 before:w-0.5 before:rounded-full before:bg-[#20376b]"
+                                    : "text-slate-600 font-medium hover:bg-slate-50 hover:text-slate-900"
                             )}
                         >
                             <Icon
                                 className={cn(
-                                    "h-4 w-4 shrink-0",
-                                    isActive ? "text-white" : "text-slate-400 group-hover:text-slate-600"
+                                    "h-4 w-4 shrink-0 transition-colors",
+                                    isActive ? "text-[#20376b]" : "text-slate-400 group-hover:text-slate-600"
                                 )}
                             />
-                            <span className="flex-1">{item.label}</span>
+                            <span className="flex-1 truncate">{item.label}</span>
                             {item.badge && item.badge > 0 ? (
-                                <span className="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-orange-100 text-orange-600 text-[10px] font-bold">
+                                <span className="ml-auto flex h-4.5 min-w-[18px] items-center justify-center rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold px-1">
                                     {item.badge}
                                 </span>
-                            ) : isActive ? (
-                                <ChevronRight className="h-3 w-3 text-white/70" />
                             ) : null}
                         </Link>
                     );
@@ -104,9 +92,9 @@ export function Sidebar({ role }: SidebarProps) {
             </nav>
 
             {/* Footer branding */}
-            <div className="px-4 py-4 border-t border-slate-200">
-                <p className="text-[10px] text-slate-400 text-center">
-                    NBA Criterion 4 · v1.0.0
+            <div className="px-4 py-4 border-t border-slate-100">
+                <p className="text-[10px] text-slate-400 text-center leading-relaxed">
+                    Sahyadri College · NBA Criterion 4
                 </p>
             </div>
         </aside>

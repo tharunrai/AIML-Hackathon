@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "NBA Criterion 4 | Student Achievement Management System",
-  description: "A unified platform for tracking, approving, and analyzing student achievements in compliance with NBA Criterion 4 accreditation requirements.",
+  title: "Sahyadri College | NBA Criterion 4 Achievement Management",
+  description: "Sahyadri College of Engineering & Management — NBA Criterion 4 Student Achievement Management System for tracking, approving, and analyzing student achievements.",
 };
 
 export default function RootLayout({
@@ -25,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} antialiased font-sans`}
       >
         {children}
       </body>

@@ -29,9 +29,9 @@ import { Achievement, AchievementStatus } from "@/types";
 import { cn } from "@/lib/utils";
 
 const statusColors: Record<AchievementStatus, string> = {
-    approved: "bg-emerald-100 text-emerald-700 border-emerald-200",
-    pending: "bg-orange-100 text-orange-700 border-orange-200",
-    rejected: "bg-red-100 text-red-700 border-red-200",
+    approved: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    pending: "bg-amber-50 text-amber-700 border-amber-200",
+    rejected: "bg-rose-50 text-rose-700 border-rose-200",
 };
 
 export default function AdminAchievementsPage() {
@@ -72,7 +72,7 @@ export default function AdminAchievementsPage() {
     const AchievementRow = ({ a }: { a: Achievement }) => (
         <div className="flex items-center gap-3 py-3 px-4 hover:bg-slate-50 rounded-lg transition-colors">
             <Avatar className="h-8 w-8 shrink-0">
-                <AvatarFallback className="bg-violet-50 text-violet-700 text-[10px] font-semibold">
+                <AvatarFallback className="bg-[#20376b]/10 text-[#20376b] text-[10px] font-semibold">
                     {a.studentName.split(" ").map((n) => n[0]).join("")}
                 </AvatarFallback>
             </Avatar>
@@ -83,7 +83,7 @@ export default function AdminAchievementsPage() {
                 </p>
             </div>
             <CategoryBadge category={a.category} />
-            <span className="text-xs font-semibold text-violet-700 shrink-0">{a.points} pts</span>
+            <span className="text-xs font-semibold text-[#20376b] shrink-0">{a.points} pts</span>
             <Badge variant="outline" className={cn("text-[10px] capitalize shrink-0", statusColors[a.status])}>
                 {a.status}
             </Badge>
@@ -131,17 +131,17 @@ export default function AdminAchievementsPage() {
 
             {/* Summary badges */}
             <div className="flex flex-wrap gap-3 mb-5">
-                <div className="flex items-center gap-2 rounded-lg border border-orange-200 bg-orange-50 px-4 py-2">
-                    <span className="text-xs font-medium text-orange-700">Pending</span>
-                    <span className="text-sm font-bold text-orange-700">{items.filter((a) => a.status === "pending").length}</span>
+                <div className="flex items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2">
+                    <span className="text-xs font-medium text-amber-700">Pending</span>
+                    <span className="text-sm font-bold text-amber-700">{items.filter((a) => a.status === "pending").length}</span>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-2">
                     <span className="text-xs font-medium text-emerald-700">Approved</span>
                     <span className="text-sm font-bold text-emerald-700">{items.filter((a) => a.status === "approved").length}</span>
                 </div>
-                <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2">
-                    <span className="text-xs font-medium text-red-700">Rejected</span>
-                    <span className="text-sm font-bold text-red-700">{items.filter((a) => a.status === "rejected").length}</span>
+                <div className="flex items-center gap-2 rounded-lg border border-rose-200 bg-rose-50 px-4 py-2">
+                    <span className="text-xs font-medium text-rose-700">Rejected</span>
+                    <span className="text-sm font-bold text-rose-700">{items.filter((a) => a.status === "rejected").length}</span>
                 </div>
             </div>
 
@@ -172,7 +172,7 @@ export default function AdminAchievementsPage() {
                     <TabsTrigger value="pending">
                         Pending
                         {pending.length > 0 && (
-                            <span className="ml-1.5 flex h-4 min-w-4 px-1 items-center justify-center rounded-full bg-orange-100 text-orange-600 text-[9px] font-bold">
+                            <span className="ml-1.5 flex h-4 min-w-4 px-1 items-center justify-center rounded-full bg-amber-100 text-amber-700 text-[9px] font-bold">
                                 {pending.length}
                             </span>
                         )}
@@ -225,7 +225,7 @@ export default function AdminAchievementsPage() {
                                 </div>
                                 <div className="bg-slate-50 rounded-md p-3">
                                     <p className="text-slate-400 mb-0.5">Points</p>
-                                    <p className="font-semibold text-violet-700">{selected.points} pts</p>
+                                    <p className="font-semibold text-[#20376b]">{selected.points} pts</p>
                                 </div>
                                 <div className="bg-slate-50 rounded-md p-3">
                                     <p className="text-slate-400 mb-0.5">Department</p>
@@ -245,7 +245,7 @@ export default function AdminAchievementsPage() {
                             {selected.proof && (
                                 <div className="bg-slate-50 rounded-md p-3 text-xs">
                                     <p className="text-slate-400 mb-1">Proof Document</p>
-                                    <p className="text-blue-600 font-medium">{selected.proof}</p>
+                                    <p className="text-[#20376b] font-medium">{selected.proof}</p>
                                 </div>
                             )}
                             {selected.reviewedBy && (

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOff, GraduationCap } from "lucide-react";
+import Image from "next/image";
+import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -44,22 +45,16 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen bg-slate-50 flex">
             {/* Left panel */}
-            <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-blue-800 flex-col justify-between p-12">
+            <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#20376b] to-[#1a2d54] flex-col justify-between p-12">
                 <div>
                     <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20">
-                            <span className="text-sm font-bold text-white">NBA</span>
-                        </div>
-                        <div>
-                            <p className="text-sm font-semibold text-white">Criterion 4</p>
-                            <p className="text-xs text-blue-200">Achievement Management System</p>
-                        </div>
+                        <Image src="/logo.svg" width={155} height={38} className="h-10 w-auto brightness-0 invert" alt="Sahyadri College" />
                     </div>
                     <div className="mt-20">
                         <h2 className="text-3xl font-bold text-white leading-snug">
                             Track, Approve &<br />Analyze Achievements
                         </h2>
-                        <p className="mt-4 text-blue-200 text-sm leading-relaxed max-w-sm">
+                        <p className="mt-4 text-[#94aed4] text-sm leading-relaxed max-w-sm">
                             A comprehensive platform for managing student achievements in compliance with NBA Criterion 4 requirements.
                         </p>
                     </div>
@@ -73,7 +68,7 @@ export default function LoginPage() {
                     ].map((s) => (
                         <div key={s.l} className="bg-white/10 rounded-lg p-4">
                             <p className="text-xl font-bold text-white">{s.v}</p>
-                            <p className="text-xs text-blue-200 mt-0.5">{s.l}</p>
+                            <p className="text-xs text-[#94aed4] mt-0.5">{s.l}</p>
                         </div>
                     ))}
                 </div>
@@ -84,9 +79,7 @@ export default function LoginPage() {
                 <div className="w-full max-w-sm">
                     <div className="mb-8 text-center">
                         <div className="flex lg:hidden items-center gap-2 justify-center mb-4">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-                                <span className="text-xs font-bold text-white">NBA</span>
-                            </div>
+                            <Image src="/logo.svg" width={155} height={38} className="h-9 w-auto" alt="Sahyadri College" />
                         </div>
                         <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
                         <p className="mt-1 text-sm text-slate-500">Sign in to your account</p>
@@ -107,7 +100,7 @@ export default function LoginPage() {
                                                 className={cn(
                                                     "py-1.5 px-2 rounded-md text-xs font-medium transition-all",
                                                     role === r.value
-                                                        ? "bg-white text-blue-700 shadow-sm"
+                                                        ? "bg-white text-[#20376b] shadow-sm"
                                                         : "text-slate-500 hover:text-slate-700"
                                                 )}
                                             >
@@ -135,7 +128,7 @@ export default function LoginPage() {
                                 <div className="space-y-1.5">
                                     <div className="flex items-center justify-between">
                                         <Label htmlFor="password" className="text-xs font-medium text-slate-700">Password</Label>
-                                        <a href="#" className="text-xs text-blue-600 hover:underline">Forgot password?</a>
+                                        <a href="#" className="text-xs text-[#20376b] hover:underline">Forgot password?</a>
                                     </div>
                                     <div className="relative">
                                         <Input
@@ -157,7 +150,7 @@ export default function LoginPage() {
                                     {errors.password && <p className="text-xs text-red-500">{errors.password}</p>}
                                 </div>
 
-                                <Button type="submit" disabled={loading} className="w-full bg-blue-600 hover:bg-blue-700 text-white h-9">
+                                <Button type="submit" disabled={loading} className="w-full bg-[#20376b] hover:bg-[#1a2d54] text-white h-9">
                                     {loading ? (
                                         <span className="flex items-center gap-2">
                                             <span className="h-3.5 w-3.5 rounded-full border-2 border-white border-t-transparent animate-spin" />
@@ -171,7 +164,7 @@ export default function LoginPage() {
                                     <p className="text-[10px] text-slate-400 mb-2">Quick Demo Access:</p>
                                     <div className="flex gap-2 justify-center">
                                         {roles.map((r) => (
-                                            <Link key={r.href} href={r.href} className="text-[10px] text-blue-600 hover:underline">
+                                            <Link key={r.href} href={r.href} className="text-[10px] text-[#20376b] hover:underline">
                                                 {r.label}
                                             </Link>
                                         ))}
@@ -183,7 +176,7 @@ export default function LoginPage() {
 
                     <p className="mt-5 text-center text-xs text-slate-500">
                         Don&apos;t have an account?{" "}
-                        <Link href="/register" className="text-blue-600 font-medium hover:underline">
+                        <Link href="/register" className="text-[#20376b] font-medium hover:underline">
                             Register
                         </Link>
                     </p>

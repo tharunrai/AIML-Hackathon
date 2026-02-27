@@ -64,10 +64,10 @@ export default function AnalyticsPage() {
 
             {/* Summary Stats */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-                <StatCard title="Total Points Awarded" value={totalPoints.toLocaleString()} icon={Trophy} color="blue" />
-                <StatCard title="Approved Achievements" value={totalApproved} icon={TrendingUp} color="green" trend={14} trendLabel="vs last year" />
-                <StatCard title="Pending Review" value={totalPending} icon={BarChart2} color="orange" />
-                <StatCard title="Active Students" value="1,200" icon={Users} color="violet" />
+                <StatCard title="Total Points Awarded" value={totalPoints.toLocaleString()} icon={Trophy} color="navy" />
+                <StatCard title="Approved Achievements" value={totalApproved} icon={TrendingUp} color="emerald" trend={14} trendLabel="vs last year" />
+                <StatCard title="Pending Review" value={totalPending} icon={BarChart2} color="amber" />
+                <StatCard title="Active Students" value="1,200" icon={Users} color="teal" />
             </div>
 
             <Tabs defaultValue="overview">
@@ -83,9 +83,9 @@ export default function AnalyticsPage() {
                             <CustomAreaChart
                                 data={monthlyAreaData}
                                 areas={[
-                                    { key: "total", label: "Total Submissions", color: "#2563eb" },
+                                    { key: "total", label: "Total Submissions", color: "#20376b" },
                                     { key: "approved", label: "Approved", color: "#10b981" },
-                                    { key: "pending", label: "Pending", color: "#f59e0b" },
+                                    { key: "pending", label: "Pending", color: "#d97706" },
                                 ]}
                             />
                         </ChartWrapper>
@@ -133,9 +133,9 @@ export default function AnalyticsPage() {
                                                 <td className="px-4 py-2.5 font-medium text-slate-800">{c.category}</td>
                                                 <td className="px-4 py-2.5 text-slate-600">{c.count}</td>
                                                 <td className="px-4 py-2.5 text-emerald-700 font-semibold">{c.approved}</td>
-                                                <td className="px-4 py-2.5 text-orange-600">{c.pending}</td>
-                                                <td className="px-4 py-2.5 text-red-500">{c.rejected}</td>
-                                                <td className="px-4 py-2.5 text-blue-700 font-semibold">{c.points.toLocaleString()}</td>
+                                                <td className="px-4 py-2.5 text-amber-600">{c.pending}</td>
+                                                <td className="px-4 py-2.5 text-rose-600">{c.rejected}</td>
+                                                <td className="px-4 py-2.5 text-[#20376b] font-semibold">{c.points.toLocaleString()}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -150,8 +150,8 @@ export default function AnalyticsPage() {
                         <CustomBarChart
                             data={deptBarData}
                             bars={[
-                                { key: "Points", label: "Points", color: "#2563eb" },
-                                { key: "Students", label: "Students", color: "#8b5cf6" },
+                                { key: "Points", label: "Points", color: "#20376b" },
+                                { key: "Students", label: "Students", color: "#0d9488" },
                             ]}
                             height={300}
                         />
@@ -178,10 +178,10 @@ export default function AnalyticsPage() {
                                                 <td className="px-4 py-2.5 text-slate-600">{d.totalStudents}</td>
                                                 <td className="px-4 py-2.5 text-slate-600">{d.totalAchievements}</td>
                                                 <td className="px-4 py-2.5 text-emerald-700 font-semibold">{d.approvedAchievements}</td>
-                                                <td className="px-4 py-2.5 text-blue-700">
+                                                <td className="px-4 py-2.5 text-[#20376b]">
                                                     {d.totalAchievements > 0 ? Math.round((d.approvedAchievements / d.totalAchievements) * 100) : 0}%
                                                 </td>
-                                                <td className="px-4 py-2.5 text-blue-700 font-semibold">{d.totalPoints.toLocaleString()}</td>
+                                                <td className="px-4 py-2.5 text-[#20376b] font-semibold">{d.totalPoints.toLocaleString()}</td>
                                             </tr>
                                         ))}
                                     </tbody>

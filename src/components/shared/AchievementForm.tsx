@@ -197,7 +197,7 @@ export function AchievementForm() {
                             rows={4}
                             className={cn(
                                 "w-full rounded-md border bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 shadow-sm resize-none",
-                                "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                                "focus:outline-none focus:ring-2 focus:ring-[#20376b]/30 focus:border-[#20376b]/50",
                                 errors.description ? "border-red-400" : "border-slate-200"
                             )}
                         />
@@ -232,7 +232,7 @@ export function AchievementForm() {
                         ) : (
                             <div
                                 onClick={() => fileInputRef.current?.click()}
-                                className="border-2 border-dashed border-slate-200 rounded-lg p-6 text-center hover:border-blue-400 transition-colors cursor-pointer"
+                            className="border-2 border-dashed border-slate-200 rounded-lg p-6 text-center hover:border-[#20376b]/40 transition-colors cursor-pointer"
                             >
                                 <Upload className="h-8 w-8 text-slate-300 mx-auto mb-2" />
                                 <p className="text-sm text-slate-500">Click to upload or drag and drop</p>
@@ -246,7 +246,7 @@ export function AchievementForm() {
                         <Button
                             type="submit"
                             disabled={loading}
-                            className="bg-blue-600 hover:bg-blue-700 text-white"
+                            className="bg-[#20376b] hover:bg-[#1a2d54] text-white"
                         >
                             {loading ? (
                                 <span className="flex items-center gap-2">

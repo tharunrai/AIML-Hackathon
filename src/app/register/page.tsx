@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -54,7 +55,7 @@ export default function RegisterPage() {
                     <h2 className="text-xl font-bold text-slate-900">Registration Successful!</h2>
                     <p className="mt-2 text-sm text-slate-500">Your account is pending admin approval. You'll receive a confirmation email shortly.</p>
                     <Link href="/login">
-                        <Button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white">Go to Login</Button>
+                        <Button className="mt-6 bg-[#20376b] hover:bg-[#1a2d54] text-white">Go to Login</Button>
                     </Link>
                 </div>
             </div>
@@ -66,10 +67,7 @@ export default function RegisterPage() {
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
                     <Link href="/" className="inline-flex items-center gap-2 mb-5">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-                            <span className="text-xs font-bold text-white">NBA</span>
-                        </div>
-                        <span className="text-sm font-semibold text-slate-900">Criterion 4</span>
+                        <Image src="/logo.svg" width={155} height={38} className="h-9 w-auto" alt="Sahyadri College" />
                     </Link>
                     <h1 className="text-2xl font-bold text-slate-900">Create an account</h1>
                     <p className="mt-1 text-sm text-slate-500">Register to access the achievement management system</p>
@@ -89,7 +87,7 @@ export default function RegisterPage() {
                                             onClick={() => setRole(r)}
                                             className={cn(
                                                 "py-1.5 rounded-md text-xs font-medium transition-all capitalize",
-                                                role === r ? "bg-white text-blue-700 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                                                role === r ? "bg-white text-[#20376b] shadow-sm" : "text-slate-500 hover:text-slate-700"
                                             )}
                                         >
                                             {r}
@@ -127,7 +125,7 @@ export default function RegisterPage() {
                                         value={form.department}
                                         onChange={(e) => setForm({ ...form, department: e.target.value })}
                                         className={cn(
-                                            "w-full h-9 rounded-md border bg-white px-3 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500",
+                                            "w-full h-9 rounded-md border bg-white px-3 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#20376b]",
                                             errors.department ? "border-red-400" : "border-slate-200"
                                         )}
                                     >
@@ -157,7 +155,7 @@ export default function RegisterPage() {
                                 {errors.confirm && <p className="text-xs text-red-500">{errors.confirm}</p>}
                             </div>
 
-                            <Button type="submit" disabled={loading} className="w-full bg-blue-600 hover:bg-blue-700 text-white h-9">
+                            <Button type="submit" disabled={loading} className="w-full bg-[#20376b] hover:bg-[#1a2d54] text-white h-9">
                                 {loading ? (
                                     <span className="flex items-center gap-2">
                                         <span className="h-3.5 w-3.5 rounded-full border-2 border-white border-t-transparent animate-spin" />
@@ -171,7 +169,7 @@ export default function RegisterPage() {
 
                 <p className="mt-5 text-center text-xs text-slate-500">
                     Already have an account?{" "}
-                    <Link href="/login" className="text-blue-600 font-medium hover:underline">Sign In</Link>
+                    <Link href="/login" className="text-[#20376b] font-medium hover:underline">Sign In</Link>
                 </p>
             </div>
         </div>

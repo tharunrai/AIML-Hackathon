@@ -21,7 +21,7 @@ const columns: Column<Achievement>[] = [
     { key: "category", label: "Category", render: (val) => <CategoryBadge category={String(val)} /> },
     {
         key: "points", label: "Points", render: (val) => (
-            <span className="text-xs font-semibold text-blue-700">{String(val)} pts</span>
+            <span className="text-xs font-semibold text-[#20376b]">{String(val)} pts</span>
         )
     },
     { key: "status", label: "Status", render: (_, row) => <StatusBadge status={row.status} /> },
@@ -57,7 +57,7 @@ export default function AchievementsPage() {
                     </TabsTrigger>
                     <TabsTrigger value="pending" className="text-xs">
                         Pending{" "}
-                        <Badge className="ml-1.5 h-4 px-1 text-[9px] bg-orange-100 text-orange-700 hover:bg-orange-100">
+                        <Badge className="ml-1.5 h-4 px-1 text-[9px] bg-amber-100 text-amber-700 hover:bg-amber-100">
                             {pending.length}
                         </Badge>
                     </TabsTrigger>

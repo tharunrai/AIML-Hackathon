@@ -20,7 +20,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-const COLORS = ["#2563eb", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#ec4899"];
+const COLORS = ["#20376b", "#0d9488", "#d97706", "#059669", "#64748b", "#be185d"];
 
 interface ChartWrapperProps {
     title: string;
