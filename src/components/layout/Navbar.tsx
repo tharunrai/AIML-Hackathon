@@ -43,11 +43,6 @@ export function Navbar({ user, pendingCount = 0 }: NavbarProps) {
             badge: "bg-blue-600 hover:bg-blue-600",
             avatar: "bg-blue-100 text-blue-700",
         },
-        faculty: {
-            logo: "bg-emerald-600",
-            badge: "bg-emerald-600 hover:bg-emerald-600",
-            avatar: "bg-emerald-100 text-emerald-700",
-        },
         admin: {
             logo: "bg-violet-600",
             badge: "bg-violet-600 hover:bg-violet-600",

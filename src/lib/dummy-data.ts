@@ -21,7 +21,7 @@ export const currentFaculty: User = {
     id: "FAC001",
     name: "Dr. Priya Nair",
     email: "priya.nair@college.edu",
-    role: "faculty",
+    role: "admin",
     department: "Computer Science & Engineering",
     employeeId: "EMP101",
     joinedAt: "2018-06-15",

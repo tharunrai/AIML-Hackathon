@@ -85,6 +85,40 @@ export default function ReportsPage() {
         setGenerated(false);
     };
 
+    const handleExportCSV = () => {
+        const headers = ["Student", "Title", "Category", "Department", "Date", "Points", "Status"];
+        const rows = filtered.map((a) => [
+            `"${a.studentName}"`,
+            `"${a.title}"`,
+            `"${a.category}"`,
+            `"${a.department}"`,
+            `"${a.date}"`,
+            a.points,
+            `"${a.status}"`,
+        ]);
+        const csv = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `nba-report-${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const handleExportPDF = () => {
+        const rows = filtered
+            .map((a) => `<tr><td>${a.studentName}</td><td>${a.title}</td><td>${a.category}</td><td>${a.department}</td><td>${a.date}</td><td>${a.points} pts</td><td>${a.status}</td></tr>`)
+            .join("");
+        const html = `<!DOCTYPE html><html><head><title>NBA Report</title>
+<style>body{font-family:sans-serif;padding:24px}h2{margin-bottom:8px}table{width:100%;border-collapse:collapse;font-size:12px}th,td{border:1px solid #ccc;padding:6px 10px;text-align:left}th{background:#f1f5f9}tr:nth-child(even){background:#f8fafc}</style>
+</head><body><h2>NBA Criterion 4 – Achievement Report</h2>
+<p style="font-size:12px;color:#64748b">Generated: ${new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})} · ${filtered.length} records</p>
+<table><thead><tr><th>Student</th><th>Title</th><th>Category</th><th>Department</th><th>Date</th><th>Points</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
+        const win = window.open("", "_blank");
+        if (win) { win.document.write(html); win.document.close(); win.print(); }
+    };
+
     return (
         <DashboardLayout user={currentAdmin} role="admin">
             {/* Header */}
@@ -210,10 +244,10 @@ export default function ReportsPage() {
                                         </p>
                                     </div>
                                     <div className="flex gap-2">
-                                        <Button size="sm" variant="outline" className="h-8 text-xs border-emerald-300 text-emerald-700 hover:bg-emerald-100 gap-1.5">
+                                        <Button onClick={handleExportCSV} size="sm" variant="outline" className="h-8 text-xs border-emerald-300 text-emerald-700 hover:bg-emerald-100 gap-1.5">
                                             <Download className="h-3.5 w-3.5" /> Export CSV
                                         </Button>
-                                        <Button size="sm" className="h-8 text-xs bg-emerald-600 hover:bg-emerald-700 text-white gap-1.5">
+                                        <Button onClick={handleExportPDF} size="sm" className="h-8 text-xs bg-emerald-600 hover:bg-emerald-700 text-white gap-1.5">
                                             <Download className="h-3.5 w-3.5" /> Export PDF
                                         </Button>
                                     </div>

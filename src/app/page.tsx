@@ -164,11 +164,10 @@ export default function LandingPage() {
               Tailored experience for every stakeholder in the achievement lifecycle.
             </p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {[
               { role: "Student", href: "/student/dashboard", desc: "Submit achievements, track status, view analytics", color: "blue" },
-              { role: "Faculty", href: "/faculty/dashboard", desc: "Review submissions, approve achievements, mentor students", color: "emerald" },
-              { role: "Admin", href: "/admin/dashboard", desc: "System-wide analytics, reporting, user management", color: "purple" },
+              { role: "Admin", href: "/admin/dashboard", desc: "System-wide analytics, approvals, reporting, and user management", color: "purple" },
             ].map((r) => (
               <Link key={r.role} href={r.href} className="group block rounded-xl border border-slate-200 bg-slate-50 p-6 hover:shadow-md hover:border-blue-200 transition-all">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">{r.role} Dashboard</p>

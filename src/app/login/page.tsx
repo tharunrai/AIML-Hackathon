@@ -9,11 +9,10 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-type Role = "student" | "faculty" | "admin";
+type Role = "student" | "admin";
 
 const roles: { value: Role; label: string; href: string }[] = [
     { value: "student", label: "Student", href: "/student/dashboard" },
-    { value: "faculty", label: "Faculty", href: "/faculty/dashboard" },
     { value: "admin", label: "Administrator", href: "/admin/dashboard" },
 ];
 
@@ -99,7 +98,7 @@ export default function LoginPage() {
                                 {/* Role Selector */}
                                 <div className="space-y-1.5">
                                     <Label className="text-xs font-medium text-slate-700">Login as</Label>
-                                    <div className="grid grid-cols-3 gap-1.5 bg-slate-100 p-1 rounded-lg">
+                                    <div className="grid grid-cols-2 gap-1.5 bg-slate-100 p-1 rounded-lg">
                                         {roles.map((r) => (
                                             <button
                                                 key={r.value}

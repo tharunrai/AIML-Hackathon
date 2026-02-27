@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-type Role = "student" | "faculty";
+type Role = "student";
 
 export default function RegisterPage() {
     const [role, setRole] = useState<Role>("student");
@@ -81,8 +81,8 @@ export default function RegisterPage() {
                             {/* Role Toggle */}
                             <div className="space-y-1.5">
                                 <Label className="text-xs font-medium text-slate-700">Register as</Label>
-                                <div className="grid grid-cols-2 gap-1.5 bg-slate-100 p-1 rounded-lg">
-                                    {(["student", "faculty"] as Role[]).map((r) => (
+                                <div className="grid grid-cols-1 gap-1.5 bg-slate-100 p-1 rounded-lg">
+                                    {(["student"] as Role[]).map((r) => (
                                         <button
                                             key={r}
                                             type="button"

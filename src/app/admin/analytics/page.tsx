@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BarChart2, TrendingUp, Trophy, Users } from "lucide-react";
 import {
-    currentStudent,
+    currentAdmin,
     categoryStats,
     monthlyStats,
     departmentStats,
@@ -49,25 +49,25 @@ const categoryPieData = categoryStats.map((c) => ({
     value: c.count,
 }));
 
-export default function AnalyticsPage() {
+export default function AdminAnalyticsPage() {
     const totalPoints = categoryStats.reduce((s, c) => s + c.points, 0);
     const totalApproved = categoryStats.reduce((s, c) => s + c.approved, 0);
     const totalPending = categoryStats.reduce((s, c) => s + c.pending, 0);
 
     return (
-        <DashboardLayout user={currentStudent} role="student">
+        <DashboardLayout user={currentAdmin} role="admin">
             {/* Header */}
             <div className="mb-6">
                 <h1 className="text-xl font-bold text-slate-900">Analytics</h1>
-                <p className="text-sm text-slate-500 mt-0.5">Visual insights across achievements, categories, and departments.</p>
+                <p className="text-sm text-slate-500 mt-0.5">System-wide visual insights across achievements, categories, and departments.</p>
             </div>
 
             {/* Summary Stats */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-                <StatCard title="Total Points Awarded" value={totalPoints.toLocaleString()} icon={Trophy} color="blue" />
+                <StatCard title="Total Points Awarded" value={totalPoints.toLocaleString()} icon={Trophy} color="violet" />
                 <StatCard title="Approved Achievements" value={totalApproved} icon={TrendingUp} color="green" trend={14} trendLabel="vs last year" />
                 <StatCard title="Pending Review" value={totalPending} icon={BarChart2} color="orange" />
-                <StatCard title="Active Students" value="1,200" icon={Users} color="violet" />
+                <StatCard title="Active Students" value="1,200" icon={Users} color="blue" />
             </div>
 
             <Tabs defaultValue="overview">
@@ -83,7 +83,7 @@ export default function AnalyticsPage() {
                             <CustomAreaChart
                                 data={monthlyAreaData}
                                 areas={[
-                                    { key: "total", label: "Total Submissions", color: "#2563eb" },
+                                    { key: "total", label: "Total Submissions", color: "#8b5cf6" },
                                     { key: "approved", label: "Approved", color: "#10b981" },
                                     { key: "pending", label: "Pending", color: "#f59e0b" },
                                 ]}
@@ -112,7 +112,6 @@ export default function AnalyticsPage() {
                         </ChartWrapper>
                     </div>
 
-                    {/* Category table */}
                     <Card className="border-slate-200 shadow-sm">
                         <CardHeader className="pb-3">
                             <CardTitle className="text-sm font-semibold text-slate-800">Category Summary</CardTitle>
@@ -135,7 +134,7 @@ export default function AnalyticsPage() {
                                                 <td className="px-4 py-2.5 text-emerald-700 font-semibold">{c.approved}</td>
                                                 <td className="px-4 py-2.5 text-orange-600">{c.pending}</td>
                                                 <td className="px-4 py-2.5 text-red-500">{c.rejected}</td>
-                                                <td className="px-4 py-2.5 text-blue-700 font-semibold">{c.points.toLocaleString()}</td>
+                                                <td className="px-4 py-2.5 text-violet-700 font-semibold">{c.points.toLocaleString()}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -150,8 +149,8 @@ export default function AnalyticsPage() {
                         <CustomBarChart
                             data={deptBarData}
                             bars={[
-                                { key: "Points", label: "Points", color: "#2563eb" },
-                                { key: "Students", label: "Students", color: "#8b5cf6" },
+                                { key: "Points", label: "Points", color: "#8b5cf6" },
+                                { key: "Students", label: "Students", color: "#2563eb" },
                             ]}
                             height={300}
                         />
@@ -178,10 +177,10 @@ export default function AnalyticsPage() {
                                                 <td className="px-4 py-2.5 text-slate-600">{d.totalStudents}</td>
                                                 <td className="px-4 py-2.5 text-slate-600">{d.totalAchievements}</td>
                                                 <td className="px-4 py-2.5 text-emerald-700 font-semibold">{d.approvedAchievements}</td>
-                                                <td className="px-4 py-2.5 text-blue-700">
+                                                <td className="px-4 py-2.5 text-violet-700">
                                                     {d.totalAchievements > 0 ? Math.round((d.approvedAchievements / d.totalAchievements) * 100) : 0}%
                                                 </td>
-                                                <td className="px-4 py-2.5 text-blue-700 font-semibold">{d.totalPoints.toLocaleString()}</td>
+                                                <td className="px-4 py-2.5 text-violet-700 font-semibold">{d.totalPoints.toLocaleString()}</td>
                                             </tr>
                                         ))}
                                     </tbody>

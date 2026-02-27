@@ -19,22 +19,13 @@ import { UserRole, NavItem } from "@/types";
 const studentNav: NavItem[] = [
     { label: "Dashboard", href: "/student/dashboard", icon: "LayoutDashboard" },
     { label: "Achievements", href: "/student/achievements", icon: "Trophy" },
-    { label: "Analytics", href: "/student/analytics", icon: "BarChart2" },
-    { label: "Reports", href: "/admin/reports", icon: "FileText" },
-];
-
-const facultyNav: NavItem[] = [
-    { label: "Dashboard", href: "/faculty/dashboard", icon: "LayoutDashboard" },
-    { label: "Pending Approvals", href: "/student/achievements", icon: "CheckSquare", badge: 2 },
-    { label: "Students", href: "/admin/reports", icon: "Users" },
-    { label: "Analytics", href: "/student/analytics", icon: "BarChart2" },
-    { label: "Reports", href: "/admin/reports", icon: "FileText" },
 ];
 
 const adminNav: NavItem[] = [
     { label: "Dashboard", href: "/admin/dashboard", icon: "LayoutDashboard" },
-    { label: "All Achievements", href: "/student/achievements", icon: "Trophy" },
-    { label: "Analytics", href: "/student/analytics", icon: "PieChart" },
+    { label: "Pending Approvals", href: "/admin/dashboard", icon: "CheckSquare" },
+    { label: "All Achievements", href: "/admin/achievements", icon: "Trophy" },
+    { label: "Analytics", href: "/admin/analytics", icon: "PieChart" },
     { label: "Reports", href: "/admin/reports", icon: "FileText" },
     { label: "Users", href: "/admin/reports", icon: "Users" },
 ];
@@ -52,7 +43,6 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 function navForRole(role: UserRole): NavItem[] {
     if (role === "student") return studentNav;
-    if (role === "faculty") return facultyNav;
     return adminNav;
 }
 
@@ -63,9 +53,6 @@ interface SidebarProps {
 const roleTheme = {
     student: {
         active: "bg-blue-600 text-white shadow-sm",
-    },
-    faculty: {
-        active: "bg-emerald-600 text-white shadow-sm",
     },
     admin: {
         active: "bg-violet-600 text-white shadow-sm",
@@ -88,7 +75,7 @@ export function Sidebar({ role }: SidebarProps) {
                     const isActive = pathname === item.href;
                     return (
                         <Link
-                            key={item.href}
+                            key={item.label}
                             href={item.href}
                             className={cn(
                                 "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all",

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Upload, CheckCircle } from "lucide-react";
+import { useState, useRef } from "react";
+import { Upload, CheckCircle, Paperclip, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,8 +15,6 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { AchievementCategory } from "@/types";
-import { cn } from "@/lib/utils";
-
 const categories: AchievementCategory[] = [
     "Academic",
     "Research",
@@ -31,6 +30,7 @@ interface FormData {
     date: string;
     description: string;
     proof: string;
+    proofFile: File | null;
 }
 
 interface FormErrors {
@@ -46,6 +46,7 @@ const initialForm: FormData = {
     date: "",
     description: "",
     proof: "",
+    proofFile: null,
 };
 
 export function AchievementForm() {
@@ -53,6 +54,17 @@ export function AchievementForm() {
     const [errors, setErrors] = useState<FormErrors>({});
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleFilePick = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] ?? null;
+        setForm((f) => ({ ...f, proofFile: file, proof: file?.name ?? "" }));
+    };
+
+    const removeFile = () => {
+        setForm((f) => ({ ...f, proofFile: null, proof: "" }));
+        if (fileInputRef.current) fileInputRef.current.value = "";
+    };
 
     const validate = (): boolean => {
         const newErrors: FormErrors = {};
@@ -98,7 +110,7 @@ export function AchievementForm() {
                     </div>
                     <h3 className="text-lg font-semibold text-slate-900">Achievement Submitted!</h3>
                     <p className="text-sm text-slate-600 max-w-sm mx-auto">
-                        Your achievement has been submitted successfully and is pending faculty review.
+                        Your achievement has been submitted successfully and is pending admin review.
                     </p>
                     <Button onClick={handleReset} variant="outline" className="mt-2">
                         Submit Another
@@ -198,16 +210,35 @@ export function AchievementForm() {
                         </div>
                     </div>
 
-                    {/* Proof Upload (UI only) */}
+                    {/* Proof Upload */}
                     <div className="space-y-1.5">
                         <Label className="text-xs font-medium text-slate-700">Supporting Document</Label>
-                        <div className="border-2 border-dashed border-slate-200 rounded-lg p-6 text-center hover:border-blue-400 transition-colors cursor-pointer">
-                            <Upload className="h-8 w-8 text-slate-300 mx-auto mb-2" />
-                            <p className="text-sm text-slate-500">
-                                Click to upload or drag and drop
-                            </p>
-                            <p className="text-xs text-slate-400 mt-1">PDF, JPG, PNG up to 5MB</p>
-                        </div>
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            className="hidden"
+                            onChange={handleFilePick}
+                        />
+                        {form.proofFile ? (
+                            <div className="flex items-center gap-3 border border-emerald-300 bg-emerald-50 rounded-lg px-4 py-3">
+                                <Paperclip className="h-4 w-4 text-emerald-600 shrink-0" />
+                                <span className="text-xs text-emerald-800 font-medium flex-1 truncate">{form.proofFile.name}</span>
+                                <span className="text-[10px] text-slate-400">{(form.proofFile.size / 1024).toFixed(0)} KB</span>
+                                <button type="button" onClick={removeFile} className="text-slate-400 hover:text-red-500">
+                                    <X className="h-4 w-4" />
+                                </button>
+                            </div>
+                        ) : (
+                            <div
+                                onClick={() => fileInputRef.current?.click()}
+                                className="border-2 border-dashed border-slate-200 rounded-lg p-6 text-center hover:border-blue-400 transition-colors cursor-pointer"
+                            >
+                                <Upload className="h-8 w-8 text-slate-300 mx-auto mb-2" />
+                                <p className="text-sm text-slate-500">Click to upload or drag and drop</p>
+                                <p className="text-xs text-slate-400 mt-1">PDF, JPG, PNG up to 5 MB</p>
+                            </div>
+                        )}
                     </div>
 
                     {/* Actions */}
