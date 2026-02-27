@@ -6,15 +6,14 @@ import {
     CheckCircle,
     XCircle,
     Star,
-    TrendingUp,
 } from "lucide-react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { StatCard } from "@/components/shared/StatCard";
 import { DataTable, StatusBadge, CategoryBadge, Column } from "@/components/shared/DataTable";
-import { ChartWrapper, CustomAreaChart, CustomPieChart } from "@/components/shared/ChartComponents";
+import { ChartWrapper, CustomPieChart } from "@/components/shared/ChartComponents";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { currentStudent, myAchievements, monthlyStats, categoryStats } from "@/lib/dummy-data";
+import { currentStudent, myAchievements, categoryStats } from "@/lib/dummy-data";
 import { Achievement } from "@/types";
 
 const columns: Column<Achievement>[] = [
@@ -41,12 +40,6 @@ export default function StudentDashboard() {
     const pending = myAchievements.filter((a) => a.status === "pending").length;
     const rejected = myAchievements.filter((a) => a.status === "rejected").length;
 
-    const areaData = monthlyStats.slice(-6).map((m) => ({
-        name: m.month,
-        total: m.total,
-        approved: m.approved,
-    }));
-
     const pieData = categoryStats.map((c) => ({ name: c.category, value: c.approved }));
 
     return (
@@ -67,17 +60,8 @@ export default function StudentDashboard() {
                 <StatCard title="Rejected" value={rejected} icon={XCircle} color="rose" />
             </div>
 
-            {/* Charts Row */}
+            {/* Category Chart */}
             <div className="grid gap-5 lg:grid-cols-3 mb-6">
-                <ChartWrapper title="Achievement Trend" description="Monthly submission and approval trend" className="lg:col-span-2">
-                    <CustomAreaChart
-                        data={areaData}
-                        areas={[
-                            { key: "total", label: "Submitted", color: "#20376b" },
-                            { key: "approved", label: "Approved", color: "#10b981" },
-                        ]}
-                    />
-                </ChartWrapper>
                 <ChartWrapper title="By Category" description="Approved achievements per category">
                     <CustomPieChart data={pieData} height={240} innerRadius={50} />
                 </ChartWrapper>

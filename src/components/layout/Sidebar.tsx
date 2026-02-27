@@ -23,11 +23,11 @@ const studentNav: NavItem[] = [
 
 const adminNav: NavItem[] = [
     { label: "Dashboard", href: "/admin/dashboard", icon: "LayoutDashboard" },
-    { label: "Pending Approvals", href: "/admin/dashboard", icon: "CheckSquare" },
+    { label: "Pending Approvals", href: "/admin/pending", icon: "CheckSquare" },
     { label: "All Achievements", href: "/admin/achievements", icon: "Trophy" },
     { label: "Analytics", href: "/admin/analytics", icon: "PieChart" },
     { label: "Reports", href: "/admin/reports", icon: "FileText" },
-    { label: "Users", href: "/admin/reports", icon: "Users" },
+    { label: "Users", href: "/admin/users", icon: "Users" },
 ];
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
